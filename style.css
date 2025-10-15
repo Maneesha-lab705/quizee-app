@@ -1,0 +1,107 @@
+body{
+    margin: 0;
+     overflow-y: hidden;
+     display: flex;
+}
+.topNav{
+    background-color: #5EB562;
+}
+.userName{
+    position: relative;
+    right: 30px;
+    font-size: small;
+    color: #f5f5f5;
+    display: none;
+}
+
+.imgCover{
+    position: relative;
+    left: 20px;
+    margin: 10px;
+    object-fit: cover;
+    
+}
+   .loginSection {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f5f5f5;
+       
+      }
+
+      #loginIcon{
+        border-radius: 100%;
+      }
+      .login-card {
+        background-color: #abc5ac;
+        border-radius: 10px;
+        padding: 40px 30px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 350px;
+        text-align: center;
+        opacity: 0.9;
+      }
+
+      .login-card img {
+        width: 120px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      .login-card h3 {
+        margin-bottom: 20px;
+        color: #2d6a4f;
+      }
+
+      .btn-start {
+        background-color: #5EB562 !important;
+        color: white;
+        border: none;
+        width: 100px;
+      }
+
+      .btn-start:hover {
+        background-color: #40916c;
+      }
+  
+      .quze-card{
+        background-color: #40916c;
+        width: 400px;
+        padding-bottom: 100px;
+        padding-top: 100px;
+      }
+
+      
+      .quiz-card {
+        background-color: #fff;
+        border-radius: 12px;
+        padding: 30px;
+        width: 400px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-check {
+        margin-bottom: 15px;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        padding: 10px 12px;
+        transition: all 0.3s ease;
+      }
+
+      .form-check:hover {
+        background-color: #f8fff9;
+        border-color: #b7efc5;
+      }
+
+  
+      .form-check-input {
+        accent-color: #28a745;
+      }
+
+      .question {
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+     /* ///////////////// */
+     #bgImg{display: none;}
