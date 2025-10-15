@@ -1,0 +1,129 @@
+  const quizzes = [
+    {
+      question: "What does HTML stand for?",
+      options: [
+        "Hyper Text Markup Language",
+        "Hyper Text Preprocessor",
+        "Hyper Text Multiple Language",
+        "Hyper Tool Multi Language"
+      ],
+      correctAnswer: "Hyper Text Markup Language"
+    },
+    {
+      question: "What does CSS stand for?",
+      options: [
+        "Cascading Style Sheets",
+        "Creative Style System",
+        "Colorful Style Syntax",
+        "Computer Style Sheet"
+      ],
+      correctAnswer: "Cascading Style Sheets"
+    },
+    {
+      question: "Who developed Java?",
+      options: [
+        "James Gosling",
+        "Guido van Rossum",
+        "Bjarne Stroustrup",
+        "Dennis Ritchie"
+      ],
+      correctAnswer: "James Gosling"
+    },
+    {
+      question: "What is the capital of France?",
+      options: ["London", "Berlin", "Paris", "Madrid"],
+      correctAnswer: "Paris"
+    },
+    {
+      question: "Which planet is known as the Red Planet?",
+      options: ["Venus", "Mars", "Jupiter", "Mercury"],
+      correctAnswer: "Mars"
+    }
+  ];
+
+  let currentQuiz = 0;
+
+  const qCount = document.getElementById('qCount');
+  const questionEl = document.getElementById("questions");
+  const optionsEl = document.getElementById("options");
+  const submitBtn = document.querySelector(".submitBtn");
+
+  function loadQuiz() {
+    const quiz = quizzes[currentQuiz];
+    qCount.textContent = "Question " + (currentQuiz + 1);
+
+    questionEl.textContent = quiz.question;
+    optionsEl.innerHTML = "";
+
+for (let i = 0; i < quiz.options.length; i++) {
+  const opt = quiz.options[i];
+  const div = document.createElement("div");
+  div.className = "form-check mb-2";
+
+  const input = document.createElement("input");
+  input.type = "radio";
+  input.className = "form-check-input";
+  input.name = "quizOption";
+  input.id = "option" + i;
+  input.value = opt;
+
+  const label = document.createElement("label");
+  label.className = "form-check-label";
+  label.htmlFor = "option" + i;
+  label.textContent = opt;
+
+      input.addEventListener("change", () => {
+     
+      const allLabels = optionsEl.querySelectorAll("label");
+      allLabels.forEach(l => l.style.color = "black");
+
+      if (input.value === quiz.correctAnswer) {
+        input.style.backgroundColor = "green";
+        label.style.color = "green"; 
+      } else {
+        label.style.color = "red";
+      }
+    });
+  div.appendChild(input);
+  div.appendChild(label);
+  optionsEl.appendChild(div);
+}
+
+
+
+  }
+
+  let corectAnswerCount =0;
+
+  function btnNext(){
+   const selectedOption = document.querySelector('input[name="quizOption"]:checked');
+ 
+
+    if (!selectedOption) {
+      alert(" Pleace select the Answer!");
+    }
+
+    const answer = selectedOption.value;
+    const correct = quizzes[currentQuiz].correctAnswer;
+
+    if (answer === correct) {
+      alert(" Correct!");
+       corectAnswerCount++;
+    } else {
+      alert(` Wrong! Correct answer: ${correct}`);
+    }
+
+    currentQuiz++;
+    if (currentQuiz < quizzes.length) {
+      loadQuiz();
+       
+    } else {
+      document.querySelector(".quzeSection").innerHTML = `
+       <h2 class="text-success text-center"> ${corectAnswerCount} Quizzes You Done !</h2>
+        <h2 class="text-success text-center"> You've completed all quizzes!</h2>
+      `;
+    }
+  }
+ 
+
+  loadQuiz();
