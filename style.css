@@ -1,7 +1,7 @@
 body{
     margin: 0;
      overflow-y: hidden;
-     display: flex;
+     /* display: flex; */
 }
 .topNav{
     background-color: #5EB562;
