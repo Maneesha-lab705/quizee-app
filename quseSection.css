@@ -22,7 +22,9 @@ body {
   justify-content: center;
   /* background-color: #6e6c6c; */
   background-color: rgba(223, 217, 217, 0.8);
+  animation: move 1s infinite;
 }
+
 
 .quze-card {
   background-color: #40916c;

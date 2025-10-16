@@ -98,17 +98,23 @@ function loadQuiz() {
 function resetTimer() {
   clearInterval(timerInterval);
   timeLeft = 30;
-  timerDisplay.textContent = timeLeft + "s";
+  updateTimerDisplay(timeLeft);
 
   timerInterval = setInterval(() => {
     timeLeft--;
-    timerDisplay.textContent = timeLeft + "s";
+    updateTimerDisplay(timeLeft);
 
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
-      btnNext(); 
+      btnNext();
     }
   }, 1000);
+}
+
+function updateTimerDisplay(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  timerDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
 }
 
 function btnNext() {
@@ -121,26 +127,23 @@ function btnNext() {
     const correct = quizzes[currentQuiz].correctAnswer;
 
     if (answer === correct) {
-      alert(" Correct!");
       correctAnswerCount++;
-    } else {
-      alert(` Wrong! Correct answer: ${correct}`);
     }
-  } else {
-    loadQuiz();
   }
 
   currentQuiz++;
+
   if (currentQuiz < quizzes.length) {
-    loadQuiz();
+    loadQuiz(); 
   } else {
+    clearInterval(timerInterval);
     document.querySelector(".quzeSection").innerHTML = `
-      <h2 class="text-success text-center">🎉 You completed all quizzes!</h2>
-      <h3 class="text-primary text-center">You got ${correctAnswerCount} correct answers!</h3>
+      <h2 class="text-success text-center">${correctAnswerCount} Answers Correct!</h2>
+      <h2 class="text-success text-center">🎉 You've completed all quizzes!</h2>
     `;
-    timerDisplay.textContent = "✅ Done";
+    timerDisplay.textContent = "Done ✅";
+    document.getElementById("btnNext").style.display = "none";
   }
 }
 
-// Start quiz
 loadQuiz();
