@@ -1,3 +1,15 @@
+window.onload = function () {
+  const userName = sessionStorage.getItem("userName");
+  if (userName) {
+    document.getElementById("userNameDisplay").innerText = userName;
+  }
+};
+
+let currentQuiz = 0;
+let correctAnswerCount = 0;
+let timerInterval;
+let timeLeft = 30; 
+
 const quizzes = [
   {
     question: "What does HTML stand for?",
@@ -36,15 +48,12 @@ const quizzes = [
   },
   {
     question: "Which planet is known as the Red Planet?",
-    options: ["Venus", "Mars", "Jupiter", "Mercury"],
+    options: ["Venus", "Jupiter", "Mars", "Mercury"],
     correctAnswer: "Mars"
   }
 ];
 
-let currentQuiz = 0;
-let correctAnswerCount = 0;
-let timerInterval;
-let timeLeft = 30; 
+
 
 const qCount = document.getElementById("qCount");
 const questionEl = document.getElementById("questions");
@@ -53,7 +62,7 @@ const timerDisplay = document.querySelector(".timer h3");
 
 function loadQuiz() {
   const quiz = quizzes[currentQuiz];
-  qCount.textContent = "Question " + (currentQuiz + 1);
+  qCount.textContent = "Question " + (currentQuiz + 1)+"/"+(quizzes.length);
   questionEl.textContent = quiz.question;
   optionsEl.innerHTML = "";
 
@@ -130,6 +139,11 @@ function btnNext() {
       correctAnswerCount++;
     }
   }
+   const animationBox = document.getElementById("animation");
+  animationBox.classList.remove("animate-slide");
+  void animationBox.offsetWidth;
+  animationBox.classList.add("animate-slide");
+
 
   currentQuiz++;
 
@@ -139,11 +153,12 @@ function btnNext() {
     clearInterval(timerInterval);
     document.querySelector(".quzeSection").innerHTML = `
       <h2 class="text-success text-center">${correctAnswerCount} Answers Correct!</h2>
-      <h2 class="text-success text-center">🎉 You've completed all quizzes!</h2>
+      <h2 class="text-success text-center">You've completed all quizzes!</h2>
     `;
-    timerDisplay.textContent = "Done ✅";
+    timerDisplay.textContent = "Done";
     document.getElementById("btnNext").style.display = "none";
   }
 }
 
-loadQuiz();
+
+    loadQuiz();

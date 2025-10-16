@@ -3,6 +3,7 @@ body {
   padding: 0;
   height: 100%;
   overflow-y: hidden;
+  overflow-x: hidden;
   background: url("/assets/bgImage.png");
 }
 .topNav {
@@ -22,9 +23,26 @@ body {
   justify-content: center;
   /* background-color: #6e6c6c; */
   background-color: rgba(223, 217, 217, 0.8);
-  animation: move 1s infinite;
+ 
+}
+@keyframes slideMove {
+  0% {
+    transform: translateX(0);
+    border-color: rgb(196, 0, 0);
+  }
+  50% {
+    transform: translateX(900px);
+    border-color: rgb(0, 196, 59);
+  }
+  100% {
+    transform: translateX(0);
+    border-color: rgb(0, 0, 196);
+  }
 }
 
+.animate-slide {
+  animation: slideMove 0.8s ease-in-out;
+}
 
 .quze-card {
   background-color: #40916c;
