@@ -1,8 +1,11 @@
+function login(event) {
+    event.preventDefault(); 
+    let userName = document.getElementById("username").value.trim();
 
-    function login() {
-      let userName = document.getElementById("username").value;
-      console.log(userName)
-    sessionStorage.setItem('userName', userName);
-    window.location.href = 'quzeForm.html';
+    if (userName) {
+        sessionStorage.setItem("userName", userName);
+        window.location.href = "quizeForm.html";
+    } else {
+        alert("Please enter your name");
+    }
 }
-    

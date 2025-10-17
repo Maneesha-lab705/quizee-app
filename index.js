@@ -1,5 +1,5 @@
 window.onload = function () {
-  const userName = sessionStorage.getItem("userName");
+  let userName = sessionStorage.getItem("userName");
   if (userName) {
     document.getElementById("userNameDisplay").innerText = userName;
   }
